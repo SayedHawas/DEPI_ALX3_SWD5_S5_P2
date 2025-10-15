@@ -79,8 +79,8 @@ namespace WebApiDay5Lab.Repository.Implement
             //Pagination
             var totalCount = _dbSet.Count();
             var totalPage = (int)Math.Ceiling((double)totalCount / pageSize);
-            list = list.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            return list;
+            list = list.Skip((page - 1) * pageSize).Take(pageSize)
+            return list.ToList();
         }
         public int GetMaxId()
         {
