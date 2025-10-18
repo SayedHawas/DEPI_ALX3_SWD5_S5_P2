@@ -1,0 +1,16 @@
+﻿<h1> Create Category</h1>
+
+
+
+<a href="/DemoCategories/Index">Back To List</a>
+
+<h1 style="color:red"> @ViewBag.Errors </h1>
+<form action="/DemoCategories/Create" method="post" enctype="multipart/form-data">
+    <label for="Name">Name</label>
+    <input type="text" name="Name" id="Name" />
+    <br />
+    <label for="Description">Description</label>
+    <input type="text" name="Description" id="Description" />
+    <br />
+    <input type="submit" value="Save" />
+</form>

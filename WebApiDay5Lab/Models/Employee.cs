@@ -22,5 +22,6 @@ namespace WebApiDay5Lab.Models
         [ForeignKey("Department")]
         public int departmentId { get; set; }
         public virtual Department Department { get; set; }
+        public virtual ICollection<Order> Orders { get; set; } = new HashSet<Order>();
     }
 }
