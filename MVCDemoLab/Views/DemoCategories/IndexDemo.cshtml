@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MVCDemoLab.Models.Category>
+
+
+
+<h1 style="color:blue"> @ViewData["AppName"]</h1>
+
+<h2> @((int)ViewData["Number1"] + (int)ViewData["Number2"]) </h2>
+
+<h2> @(ViewBag.N1 + ViewBag.N2) </h2>
+
+
+<h1> Welcome in Index Demo View </h1>
+
+<p> For Calling  ControllerName / Action Method</p>
+<h4> HTML Elements</h4>
+<a href="/DemoCategories/Create"  class="btn btn-primary">Create</a>
+
+<h4> HTML Helper Razor Eng @@</h4>
+
+@Html.ActionLink("Create By Action Link", "Create", null, null, htmlAttributes: new {@class="btn btn-primary"})
+
+<h4> Tag Helper Razor Eng @@</h4>
+<a asp-action="Create" asp-controller="DemoCategories" class="btn btn-primary"> Create</a>
+
+<br />
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(m=> m.CategotyId)</th>
+        <th>@Html.DisplayNameFor(m => m.Name)</th>
+        <th>@Html.DisplayNameFor(m => m.Description)</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => item.CategotyId)</td>
+            <td>@Html.DisplayFor(m => item.Name)</td>
+            <td>@Html.DisplayFor(m => item.Description)</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = item.CategotyId })</td>
+            <td>@Html.ActionLink("Details", "Details", new {id =item.CategotyId })</td>
+            <td>@Html.ActionLink("Delete", "delete", new { id = item.CategotyId })</td>
+            <td><a asp-action="Edit" asp-route-id=@item.CategotyId class="btn btn-secondary"> Edit</a></td>
+            <td><a asp-action="Details" asp-route-id=@item.CategotyId class="btn btn-secondary"> Details</a></td>
+            <td><a asp-action="Delete" asp-route-id=@item.CategotyId class="btn btn-secondary"> Delete</a></td>
+        </tr>
+
+    }
+
+</table>
+

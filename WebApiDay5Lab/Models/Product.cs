@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MVCDemoLab.Models
+namespace WebApiDay5Lab.Models
 {
+    [Table("TblProducts")]
     public class Product
     {
         [Key]
@@ -16,12 +17,12 @@ namespace MVCDemoLab.Models
         [MaxLength(300, ErrorMessage = "Must Enter Only 300 letters.")]
         public string? Description { get; set; }
         [NotMapped]
-        public byte[]? Image { get; set; }
+        public byte[] Image { get; set; }
         [MaxLength(255)]
         public string? ImagePath { get; set; }
         [ForeignKey("Category")]
         public int CategotyId { get; set; }
-
-        public virtual Category? Category { get; set; }
+        // Navigation Properties
+        public virtual Category Category { get; set; }
     }
 }
