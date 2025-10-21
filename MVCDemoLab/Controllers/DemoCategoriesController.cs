@@ -34,6 +34,7 @@ namespace MVCDemoLab.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Category newCategory)
         {
             if (!ModelState.IsValid)
