@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVCDemoLab.Data;
@@ -8,6 +9,13 @@ namespace MVCDemoLab.Controllers
 {
     public class ProductsfullController : Controller
     {
+
+        [TempData]
+        public string MessageAdd { get; set; }
+        [TempData]
+        public string MessageDelete { get; set; }
+
+
         private readonly MVCDbContext _context;
 
         public ProductsfullController(MVCDbContext context)
@@ -107,6 +115,9 @@ namespace MVCDemoLab.Controllers
                 {
                     _context.Add(product);
                     await _context.SaveChangesAsync();
+
+                    MessageAdd = $"Product {product.Name} added ...";
+                    TempData.Keep("MessageAdd");
                     return RedirectToAction(nameof(Index));
                 }
                 ViewData["CategotyId"] = new SelectList(_context.Categories, "CategotyId", "Name", product.CategotyId);
@@ -119,7 +130,7 @@ namespace MVCDemoLab.Controllers
                 return View(product);
             }
         }
-
+        [Authorize]
         // GET: Productsfull/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -227,6 +238,8 @@ namespace MVCDemoLab.Controllers
             }
 
             await _context.SaveChangesAsync();
+            TempData["MessageDelete"] = $"Product {product.Name} successfully deleted!";
+            TempData.Keep("MessageDelete");
             return RedirectToAction(nameof(Index));
         }
 

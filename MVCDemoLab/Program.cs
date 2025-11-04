@@ -11,6 +11,12 @@ namespace MVCDemoLab
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            //builder.Services.AddRazorPages().AddSessionStateTempDataProvider();
+            //builder.Services.AddControllersWithViews().AddSessionStateTempDataProvider();
+            builder.Services.AddSession(Config =>
+            {
+                Config.IdleTimeout = TimeSpan.FromMinutes(20);
+            });
 
             builder.Services.AddDbContext<MVCDbContext>(option =>
             option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -31,11 +37,14 @@ namespace MVCDemoLab
 
             app.UseAuthorization();
 
+            app.UseSession();
+
             app.MapStaticAssets();
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Site}/{action=Index}/{id?}")
+                 pattern: "{controller=Site}/{action=Index}/{id:int?}")
+                //pattern: "{controller=Site}/{action=Index}/{id:int?}/{Name:alpha?}")
                 //pattern: "{controller=Users}/{action=Login}/{id?}")
                 //pattern: "{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();

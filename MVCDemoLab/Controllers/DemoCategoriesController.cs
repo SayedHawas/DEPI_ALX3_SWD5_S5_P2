@@ -27,8 +27,6 @@ namespace MVCDemoLab.Controllers
             var list = _dbContext.Categories.ToList();
             return View("Views/DemoCategories/IndexDemo.cshtml", list);
         }
-
-
         public ActionResult Create()
         {
             return View();
