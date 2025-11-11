@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MVCDemoLab.Data;
+
 
 namespace MVCDemoLab
 {
@@ -20,6 +20,11 @@ namespace MVCDemoLab
 
             builder.Services.AddDbContext<MVCDbContext>(option =>
             option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IServiceCategory, ServiceCategory>();
+
 
             var app = builder.Build();
 
@@ -43,7 +48,8 @@ namespace MVCDemoLab
 
             app.MapControllerRoute(
                 name: "default",
-                 pattern: "{controller=Site}/{action=Index}/{id:int?}")
+                 // pattern: "{controller=Site}/{action=Index}/{id:int?}/{name:alpha?}")
+                 pattern: "{controller=Site}/{action=Index}/{id?}")
                 //pattern: "{controller=Site}/{action=Index}/{id:int?}/{Name:alpha?}")
                 //pattern: "{controller=Users}/{action=Login}/{id?}")
                 //pattern: "{controller=Home}/{action=Index}/{id?}")

@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MVCDemoLab.Data;
-using MVCDemoLab.Models;
 
 namespace MVCDemoLab.Controllers
 {
@@ -271,8 +269,6 @@ namespace MVCDemoLab.Controllers
                 return View(product);
             }
         }
-
-
         //public async Task<IActionResult> Gallery()
         //{
         //    return View(await _context.Products.ToListAsync());
@@ -288,12 +284,26 @@ namespace MVCDemoLab.Controllers
                 .Take(pageSize)
                 .ToListAsync();
 
+            // var products = _context.Products.AsQueryable().Skip((page - 1) * pageSize).Take(pageSize) ;
+
+
             ViewBag.CurrentPage = page;
             ViewBag.TotalPages = totalPages;
             ViewBag.PageSize = pageSize;
             ViewBag.TotalItems = totalItems;
 
+
             return View(products);
+        }
+
+        //Validation Method 
+        public IActionResult CheckPrice(decimal Price)
+        {
+            if (Price > 100)
+            {
+                return Json(true);
+            }
+            return Json(false);
         }
 
     }
