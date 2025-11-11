@@ -7,10 +7,15 @@ namespace MVCDemoLab.Models
     {
         [Key]
         public int CategotyId { get; set; }
+
+        [IsExist(MyErrorMessage = "This Product is Already Exist")]
         [DisplayName("category Name")]
         [Required(ErrorMessage = "Must Enter Name ....")]
         [MaxLength(150, ErrorMessage = "Must Enter Only 150 letters.")]
         public string Name { get; set; }
+
+
+
         [MaxLength(300, ErrorMessage = "Must Enter Only 300 letters.")]
         [DisplayName("Notes")]
         public string? Description { get; set; }

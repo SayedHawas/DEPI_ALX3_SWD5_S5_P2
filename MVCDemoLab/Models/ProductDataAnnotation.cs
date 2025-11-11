@@ -19,6 +19,8 @@ namespace MVCDemoLab.Models
         public string Name { get; set; }
         [Required(ErrorMessage = "Must Enter price ....")]
         [Range(0.00, 99999.00)]
+        //[CustomValidation(typeof(PriceAttribute), "ValidateValue", ErrorMessage = "Product Price must be at Greater than 500.")]
+        [Remote("CheckPrice", "Productsfull", ErrorMessage = "Price Must greater than 100")]
         public decimal Price { get; set; }
         [MaxLength(300, ErrorMessage = "Must Enter Only 300 letters.")]
         public string? Description { get; set; }
