@@ -10,6 +10,7 @@ namespace MVCDemoLab.Controllers
             this._service = service;
         }
         // GET: FullCategories
+        [ResponseCache(Duration = 20)]
         public async Task<IActionResult> Index()
         {
             return View(await _service.GetCategoriesAsync());
