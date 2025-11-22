@@ -1,4 +1,5 @@
-﻿global using MVCDemoLab.CustomValidation;
+﻿global using MVCDemoLab.CustomFilters;
+global using MVCDemoLab.CustomValidation;
 global using MVCDemoLab.Data;
 global using MVCDemoLab.Models;
 global using MVCDemoLab.Repository.Implement;

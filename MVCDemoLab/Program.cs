@@ -11,6 +11,13 @@ namespace MVCDemoLab
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            //Global filter (Pipeline)
+            //builder.Services.AddControllersWithViews(option =>
+            //{
+            //    option.Filters.Add(new HandlerErrorAttribute());
+            //});
+
             //builder.Services.AddRazorPages().AddSessionStateTempDataProvider();
             //builder.Services.AddControllersWithViews().AddSessionStateTempDataProvider();
             builder.Services.AddSession(Config =>
