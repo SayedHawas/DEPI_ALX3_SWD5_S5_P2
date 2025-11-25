@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MVCDemoLab.Models;
 
 namespace MVCDemoLab.Data
 {
